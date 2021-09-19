@@ -67,7 +67,7 @@ void insert_first_SAL(PersonStaticArrayList *list, Person p)
 	int x;
 	
 	if(list->count < MAX_LIST){
-		for(x=list->count-1; x>0; x--){
+		for(x=list->count; x>0; x--){
 			list->data[x]= list->data[x-1];
 		}
 		list->data[x]=p;
@@ -137,7 +137,7 @@ void display_SAL(PersonStaticArrayList list)
  */
 void init_DAL(PersonDynamicArrayList *list)
 {
-	list->data = (Person *)malloc(sizeof(Person)*MAX_LIST);
+	list->data = (Person*)malloc(sizeof(Person)*10);
 	list->count = 0;
 	list->max = MAX_LIST;
 	
@@ -151,10 +151,12 @@ void insert_first_DAL(PersonDynamicArrayList *list, Person p)
 		list->data = (Person*)realloc(list->data, sizeof(Person)*list->max);
 	}
 	
-	for(x=list->count-1; x>0; x--){
+
+	for(x=list->count; x>0; x--){
 		list->data[x]= list->data[x-1];
 	}
 		list->data[x]=p;
+
 		list->count++;
 	
 }
@@ -212,10 +214,13 @@ void delete_by_city_DAL(PersonDynamicArrayList *list, String city)
 	
 }
  // first ocurrence
+ 
 void display_DAL(PersonDynamicArrayList list)
 {
-	while(list.count > 0){
-		printf("%s | %c | %s" , list.data[list.count--].name, list.data[list.count--].sex, list.data[list.count--].city);
+	int x = list.count;
+	while(x > 0){
+		printf("%s | %c | %s" , list.data[x-1].name, list.data[x-1].sex, list.data[x-1].name);
+		x--;
 	}
 }
 
@@ -239,7 +244,7 @@ void insert_first_DAL_2(PersonDynamicArrayList *list, Person p)
 		list->data = (Person*)realloc(list->data, sizeof(Person)*list->max);
 	}
 	
-	for(x=list->count-1; x>0; x--){
+	for(x=list->count; x>0; x--){
 		list->data[x]= list->data[x-1];
 	}
 		list->data[x]=p;
@@ -309,8 +314,9 @@ void display_DAL_2(PersonDynamicArrayList list)
 {
 	int x;
 	while(list.count > 0){
-		x= list.count;
+		x= list.count-1;
 		printf("%s | %c | %s" , list.data[x].name, list.data[x].sex, list.data[x].city);
+		list.count--;
 	}
 }
 
@@ -386,9 +392,12 @@ void delete_by_city_LL(PersonLinkedList *list, String city)
 
 void display_LL(PersonLinkedList list)
 {
-	for(;list!=NULL;list=list->next){
-		printf("%s | %c | %s", list->elem.name, list->elem.sex, list->elem.city);
+	PersonLinkedList temp;
+	for(temp=list; temp!=NULL; temp=temp->next){
+		printf("%s | %c | %s \n", temp->elem.name, temp->elem.sex, temp->elem.city);
 	}
+	
+
 }
 
 /* Implement all VSpace conncept and Cusor Based List*/

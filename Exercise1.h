@@ -19,7 +19,7 @@ int get_queue_length(CircularArrayQueue list)
 */
 PersonLinkedList get_all_females(CircularArrayQueue list)
 {
-	PersonLinkedList L , temp;
+	PersonLinkedList L=NULL;
 	Type dum; 
 	while(is_empty(list) != true){
 			dum = front(list);
@@ -41,14 +41,17 @@ PersonDynamicArrayList remove_all_males(CircularArrayQueue *list)
 {
 	PersonDynamicArrayList A;
 	init_DAL(&A);
-	int x, y, limit;
+	int x, limit;
 	limit = get_queue_length(*list);
+	Type dummy;
 	
 	for(x=0; list->front!= (list->rear +1) % MAX && x!=limit ; ){
-		if(toupper(list->data[x].sex) == 'M' ){
-			insert_first_DAL(&A, list->data[x]);
+		if(toupper(list->data[list->front].sex) == 'M' ){
+			insert_last_DAL(&A, list->data[list->front]);
+
 			list->front = (list->front+1) % MAX;
 			limit -- ;
+		
 		}else{
 			list->data[list->rear+1%MAX]= list->data[list->front];
 			list->rear=(list->rear+1) % MAX;

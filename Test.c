@@ -19,6 +19,9 @@ int main(void)
     printf("/********* Create and 3 Enqueue List *******/\n");
     A= createPerson("rob", 'm', "cebu");
     retval = enqueue(&list, A);
+    A= createPerson("jum", 'm', "sead");
+    retval = enqueue(&list, A);
+    
     A= createPerson("bine", 'f', "apas");
     retval = enqueue(&list, A);
     A= createPerson("rob", 'f', "as");
@@ -32,6 +35,7 @@ int main(void)
     printf("the top list is : ");
      dummy = front(list);
     displayPersonInfo(dummy);
+    
     printf("\nafter dequeueing, the top is: ");
     retval = dequeue(&list);
     dummy = front(list);
@@ -66,9 +70,25 @@ int main(void)
     printf("the length of the list is: %d", get_queue_length(list));
     
     printf("\n\n/********* All Females *******/\n");
-	PersonLinkedList temp;
+   	PersonLinkedList temp;
 	temp = get_all_females(list);
+	display_LL(temp);
 	
+	printf("\n\n/********* All Males *******/\n");
+	printf("the circular array top list is : ");
+     dummy = front(list);
+    displayPersonInfo(dummy);
+	printf("\n\n");
 	
+	PersonDynamicArrayList trav;
+	trav = remove_all_males(&list);
+	display_DAL(trav);
+	
+	printf("\n\n");
+	
+	 printf("the top circular array list is : ");
+     dummy = front(list);
+    displayPersonInfo(dummy);
+    
     return 0;
 }

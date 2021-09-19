@@ -10,11 +10,19 @@ int main(){
     A= createPerson("rob", 'm', "cebu");
     displayPersonInfo(A);
     
-    printf("/********* Static ArrayList *******/");
+    printf("\n\n/********* Static ArrayList *******/\n");
     
-    printf("/********* Dynamic ArrayList Version 1 *******/");
+    printf("\n\n/********* Dynamic ArrayList Version 1 *******/\n");
+    PersonDynamicArrayList C;
+    init_DAL(&C);
+ 
+    insert_first_DAL(&C, A);
     
-    printf("/********* Dynamic ArrayList Version 2 *******/");
+  
+      
+    display_DAL(C);
+    
+    printf("\n\n/********* Dynamic ArrayList Version 2 *******/");
     
     printf("/********* Linked List *******/");
     
