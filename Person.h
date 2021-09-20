@@ -53,7 +53,7 @@ Person createPerson(String name, char sex, String city) {
 }
 
 void displayPersonInfo(Person p) {
-    printf("{%s | %c | %s}", p.name, p.sex, p.city);
+    printf("{%s | %c | %s} \n", p.name, p.sex, p.city);
 }
 
 
@@ -128,7 +128,8 @@ void delete_by_sex_SAL(PersonStaticArrayList *list, char sex)
 void display_SAL(PersonStaticArrayList list)
 {
 	while(list.count > 0){
-		printf("%s | %c | %s" , list.data[list.count--].name, list.data[list.count--].sex, list.data[list.count--].city);
+		printf("%s | %c | %s \n" , list.data[list.count-1].name, list.data[list.count-1].sex, list.data[list.count-1].city);   
+                list.count--;
 	}
 }
 
@@ -205,7 +206,7 @@ void delete_last_DAL(PersonDynamicArrayList *list)
 }
 void delete_by_city_DAL(PersonDynamicArrayList *list, String city)
 {
-	int x=0, y; 
+	int x, y; 
 	for(x=0; x<list->count && strcmp(list->data[x].city, city) != 0 ; x++ ){}
 	for(y=x; y<list->count-1; y++){
 				list->data[y]=list->data[y+1];
@@ -219,7 +220,7 @@ void display_DAL(PersonDynamicArrayList list)
 {
 	int x = list.count;
 	while(x > 0){
-		printf("%s | %c | %s" , list.data[x-1].name, list.data[x-1].sex, list.data[x-1].name);
+		printf("%s | %c | %s\n" , list.data[x-1].name, list.data[x-1].sex, list.data[x-1].city);
 		x--;
 	}
 }
@@ -297,7 +298,7 @@ void delete_by_name_DAL_2(PersonDynamicArrayList *list, String name)
 {
 	int x=0, y=-1, z; 
 	for(x=0; x<list->count; x++ ){
-		if( strcmp(list->data[x].name,name) != 0 ){
+		if( strcmp(list->data[x].name,name) == 0 ){
 			y=x;
 		}
 	}
@@ -315,7 +316,7 @@ void display_DAL_2(PersonDynamicArrayList list)
 	int x;
 	while(list.count > 0){
 		x= list.count-1;
-		printf("%s | %c | %s" , list.data[x].name, list.data[x].sex, list.data[x].city);
+		printf("%s | %c | %s \n" , list.data[x].name, list.data[x].sex, list.data[x].city);
 		list.count--;
 	}
 }
